@@ -49,6 +49,22 @@ class Concept2Integration(BaseModel):
     connected: bool = False
 
 
+class CoachSettings(BaseModel):
+    """AI Coach configuration."""
+    # Coach type: specialist, generalist, recreational
+    coach_type: str = "specialist"
+
+    # Training plan type: polarized, traditional, threshold
+    training_plan: str = "polarized"
+
+    # Time constraint: minimal (0-5h), moderate (5-10h), committed (10-15h),
+    #                  serious (15-20h), elite (20+h)
+    time_constraint: str = "moderate"
+
+    # Weekly hours available (specific number for fine-tuning)
+    weekly_hours_available: Optional[float] = None
+
+
 class User(Document):
     email: EmailStr
     hashed_password: str
@@ -66,6 +82,9 @@ class User(Document):
     # Integrations
     garmin: GarminIntegration = Field(default_factory=GarminIntegration)
     concept2: Concept2Integration = Field(default_factory=Concept2Integration)
+
+    # AI Coach settings
+    coach_settings: CoachSettings = Field(default_factory=CoachSettings)
 
     # Metrics history (CTL/ATL are rolling, we store the latest)
     current_ctl: float = 0.0
