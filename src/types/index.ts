@@ -12,6 +12,7 @@ export interface User {
   name: string;
   primary_sport: string;
   coach_settings?: CoachSettings;
+  thresholds?: ThresholdValues;
 }
 
 export interface ThresholdValues {
@@ -43,6 +44,7 @@ export interface ActivitySummary {
 export interface ActivityDetail extends ActivitySummary {
   end_time?: string;
   total_elapsed_time?: number;
+  duration_seconds?: number;
   total_calories?: number;
   max_heart_rate?: number;
   max_power?: number;
