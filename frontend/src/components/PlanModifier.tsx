@@ -273,8 +273,16 @@ export default function PlanModifier() {
             }
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Sparkles size={18} />
-            {isLoading ? 'Analyzing...' : mode === 'analyze' ? 'Analyze Plan' : 'Generate Plan'}
+            {isLoading ? (
+              <RefreshCw size={18} className="animate-spin" />
+            ) : (
+              <Sparkles size={18} />
+            )}
+            {isLoading
+              ? 'Generating with AI (this may take 30-60s)...'
+              : mode === 'analyze'
+              ? 'Analyze Plan'
+              : 'Generate Plan'}
           </button>
         </form>
       </div>
